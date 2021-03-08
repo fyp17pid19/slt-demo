@@ -91,3 +91,7 @@ sw.*
 
 #vscode editor config
 .vscode
+
+#ignoring txt and mp4 files
+*.mp4
+*.txt
