@@ -1,8 +1,7 @@
 from typing import Optional
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import FastAPI
+from fastapi import FastAPI,File,UploadFile
 
-from fastapi import FastAPI, File, UploadFile
 from fastapi.encoders import jsonable_encoder
 
 app = FastAPI()
