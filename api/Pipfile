@@ -8,6 +8,8 @@ fastapi = "*"
 uvicorn = "*"
 aiofiles = "*"
 python-multipart = "*"
+opencv-python = "*"
+tensorflow = "*"
 
 [dev-packages]
 

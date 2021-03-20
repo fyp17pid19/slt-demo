@@ -1,8 +1,10 @@
 from typing import Optional
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import FastAPI,File,UploadFile
+from fastapi import FastAPI, File, UploadFile
 
 from fastapi.encoders import jsonable_encoder
+from frames import Frames
+import time
 
 app = FastAPI()
 
@@ -19,30 +21,37 @@ app.add_middleware(
 )
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+# @app.get("/")
+# def read_root():
+#     return {"Hello": "World"}
 
 
-@app.post('/veng')
-def read_video():
-    return {"object": "hello"}
+# @app.get("/items/{item_id}")
+# def read_item(item_id: int, q: Optional[str] = None):
+#     return {"item_id": item_id, "q": q}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
-
-@app.post("/video/data")
-async def video_from_fronend(file:UploadFile=File(...)):
-    # text = base64.b64encode(file.file.read())
-    # file = open("textTest.txt", "wb") 
-    # file.write(text)
-    # file.close()
+@app.post("/process/eng")
+async def process_eng(file: UploadFile = File(...)):
     fh = open("video.mp4", "wb")
     fh.write(file.file.read())
     fh.close()
-    # fh=open("video.mp4", mode="rb")
-    # return {"Hello":"Video"}
-    file_path="video.mp4"
-    return {"Video File":"Created"}
+    file_path = "video.mp4"
+    time.sleep(2)
+    return {
+        "Number of Signs": 5,
+        "Sign 1": "A",
+        "Sign 2": "B",
+        "Sign 3": "C",
+        "Sign 4": "D",
+        "Sign 5": "E",
+    }
+
+
+@app.post("/process/urdu")
+async def process_urdu(file: UploadFile = File(...)):
+    fh = open("video.mp4", "wb")
+    fh.write(file.file.read())
+    fh.close()
+    file_path = "video.mp4"
+    return {"Video File": file.filename}
